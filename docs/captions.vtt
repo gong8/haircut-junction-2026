@@ -1,0 +1,73 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:01.191
+This is Haircut.
+
+00:00:01.191 --> 00:00:05.953
+We built a simulated robot barber for AfterQuery’s Break the Agent challenge.
+
+00:00:05.953 --> 00:00:12.700
+It gets two hundred and fifty-two actions to trim forty-two patches of hair without touching the scalp.
+
+00:00:12.700 --> 00:00:16.495
+The agent gets two RGB images and the blade position.
+
+00:00:16.495 --> 00:00:21.049
+It chooses one joint turn, camera move, or cut at a time.
+
+00:00:21.049 --> 00:00:22.188
+Haircuts are irreversible.
+
+00:00:22.188 --> 00:00:28.260
+An out-of-range cut spends a step, and one nick costs as much as three perfect patches.
+
+00:00:28.260 --> 00:00:30.872
+The first Terra run recorded sixty-six nicks.
+
+00:00:30.872 --> 00:00:37.590
+The replay showed that sideways turns near the scalp caused damage, even when the blade was not cutting.
+
+00:00:37.590 --> 00:00:39.455
+Gemini Decision One failed differently.
+
+00:00:39.455 --> 00:00:44.680
+It spent two hundred and fifty actions trying to cut from above the hair.
+
+00:00:44.680 --> 00:00:51.865
+We lined up the visible hair with the scored region, improved the cameras, and told Terra to back out before turning.
+
+00:00:51.865 --> 00:00:56.312
+On the same seed it finished with zero nicks and trimmed twelve patches.
+
+00:00:56.312 --> 00:01:00.760
+Only one reached the target, so depth judgment and coverage are still hard.
+
+00:01:00.760 --> 00:01:07.484
+A scripted controller using blade position and the same joint controls reached sixteen patches with zero nicks.
+
+00:01:07.484 --> 00:01:11.836
+It uses public geometry and a model of the average head.
+
+00:01:11.836 --> 00:01:15.000
+A separate reference with noisy depth reached thirty-three.
+
+00:01:15.000 --> 00:01:17.864
+Across thirty seeds, doing nothing scored zero.
+
+00:01:17.864 --> 00:01:23.593
+Stopping the reference after a quarter of the budget scored point one six seven.
+
+00:01:23.593 --> 00:01:26.866
+Cutting without a safety margin scored below zero.
+
+00:01:26.866 --> 00:01:30.140
+The full reference averaged point five seven one.
+
+00:01:30.140 --> 00:01:35.463
+Here the noisy-depth reference shortens all sixteen mohawk crest patches without nicking the scalp.
+
+00:01:35.463 --> 00:01:38.886
+You can scrub through every action in the demo.
+
+00:01:38.886 --> 00:01:45.730
+The source includes the simulator, the Harbor runner, the action journals and the commands to reproduce the results.
