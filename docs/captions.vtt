@@ -1,73 +1,88 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:01.191
-This is Haircut.
+00:00.000 --> 00:04.000
+We built a simulator where a robot arm has to cut hair.
 
-00:00:01.191 --> 00:00:05.953
-We built a simulated robot barber for AfterQuery’s Break the Agent challenge.
+00:04.000 --> 00:06.240
+The hair starts at different lengths.
 
-00:00:05.953 --> 00:00:12.700
-It gets two hundred and fifty-two actions to trim forty-two patches of hair without touching the scalp.
+00:06.240 --> 00:08.840
+The goal is to get it close to the same length
 
-00:00:12.700 --> 00:00:16.495
-The agent gets two RGB images and the blade position.
+00:08.840 --> 00:10.720
+without touching the scalp.
 
-00:00:16.495 --> 00:00:21.049
-It chooses one joint turn, camera move, or cut at a time.
+00:10.720 --> 00:14.000
+The agent sees two cameras, one outside the head
 
-00:00:21.049 --> 00:00:22.188
-Haircuts are irreversible.
+00:14.000 --> 00:15.440
+and one on the arm.
 
-00:00:22.188 --> 00:00:28.260
-An out-of-range cut spends a step, and one nick costs as much as three perfect patches.
+00:15.440 --> 00:17.840
+It also gets the position of the blade.
 
-00:00:28.260 --> 00:00:30.872
-The first Terra run recorded sixty-six nicks.
+00:17.840 --> 00:21.960
+It can turn one joint, move the outside camera, or cut.
 
-00:00:30.872 --> 00:00:37.590
-The replay showed that sideways turns near the scalp caused damage, even when the blade was not cutting.
+00:21.960 --> 00:24.760
+It gets 252 moves.
 
-00:00:37.590 --> 00:00:39.455
-Gemini Decision One failed differently.
+00:24.760 --> 00:28.080
+If the blade is too far away, nothing gets cut.
 
-00:00:39.455 --> 00:00:44.680
-It spent two hundred and fifty actions trying to cut from above the hair.
+00:28.080 --> 00:30.240
+This is an early run with Terra.
 
-00:00:44.680 --> 00:00:51.865
-We lined up the visible hair with the scored region, improved the cameras, and told Terra to back out before turning.
+00:30.240 --> 00:34.440
+It nicked the scalp 66 times, all while moving the arm.
 
-00:00:51.865 --> 00:00:56.312
-On the same seed it finished with zero nicks and trimmed twelve patches.
+00:34.440 --> 00:37.780
+We moved the blade camera back, fixed how the hair was drawn,
 
-00:00:56.312 --> 00:01:00.760
-Only one reached the target, so depth judgment and coverage are still hard.
+00:37.780 --> 00:39.720
+and added smaller turns.
 
-00:01:00.760 --> 00:01:07.484
-A scripted controller using blade position and the same joint controls reached sixteen patches with zero nicks.
+00:39.720 --> 00:43.400
+We ran Terra twice with those changes and Luna once.
 
-00:01:07.484 --> 00:01:11.836
-It uses public geometry and a model of the average head.
+00:43.400 --> 00:45.640
+Both Terra runs had no nicks.
 
-00:01:11.836 --> 00:01:15.000
-A separate reference with noisy depth reached thirty-three.
+00:45.640 --> 00:47.240
+Luna had two.
 
-00:01:15.000 --> 00:01:17.864
-Across thirty seeds, doing nothing scored zero.
+00:47.240 --> 00:49.880
+In each run, at most one patch of hair
 
-00:01:17.864 --> 00:01:23.593
-Stopping the reference after a quarter of the budget scored point one six seven.
+00:49.880 --> 00:51.640
+ended up at the right length.
 
-00:01:23.593 --> 00:01:26.866
-Cutting without a safety margin scored below zero.
+00:51.640 --> 00:54.200
+We wrote a controller that uses the same moves
 
-00:01:26.866 --> 00:01:30.140
-The full reference averaged point five seven one.
+00:54.200 --> 00:55.520
+and blade position.
 
-00:01:30.140 --> 00:01:35.463
-Here the noisy-depth reference shortens all sixteen mohawk crest patches without nicking the scalp.
+00:55.520 --> 00:58.160
+It knows the shape of the arm, where it starts,
 
-00:01:35.463 --> 00:01:38.886
-You can scrub through every action in the demo.
+00:58.160 --> 01:00.040
+and the usual shape of the head.
 
-00:01:38.886 --> 00:01:45.730
-The source includes the simulator, the Harbor runner, the action journals and the commands to reproduce the results.
+01:00.040 --> 01:03.320
+It got 16 of 42 patches to the right length
+
+01:03.320 --> 01:06.200
+on the same head without any nicks.
+
+01:06.200 --> 01:08.600
+Here is a separate run with the mohawk.
+
+01:08.600 --> 01:11.880
+The scripted controller in this run gets depth readings.
+
+01:11.880 --> 01:14.680
+It trimmed all 16 patches in the middle.
+
+01:14.680 --> 01:17.871
+10 ended up at the right length and there were no nicks.
