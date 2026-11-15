@@ -1,0 +1,64 @@
+:root {
+  color-scheme: light;
+}
+
+body {
+  max-width: 46rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  background: #fff;
+  color: #000;
+  font: 1rem / 1.5 Arial, sans-serif;
+}
+
+h1, h2 {
+  line-height: 1.2;
+}
+
+h1 {
+  margin: 0 0 .4rem;
+}
+
+h2 {
+  margin: 1.65rem 0 .5rem;
+  font-size: 1.25rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+a:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 3px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.25rem;
+  margin: 1rem 0;
+}
+
+ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+li + li {
+  margin-top: .35rem;
+}
+
+video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-top: 1rem;
+  background: #000;
+}
+
+footer {
+  margin-top: 1.75rem;
+  font-size: .875rem;
+}
